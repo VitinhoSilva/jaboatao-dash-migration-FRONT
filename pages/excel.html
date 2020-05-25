@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="icon" href="../images/management.png" type="image/png" sizes="16x16">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Automação Jaboatão</title>
   </head>
   <body>
@@ -31,35 +32,50 @@
         </div>
       </nav>
 
+      <div>
+        <h1 style="padding-top: 30px; display: block; margin-left: auto; margin-right: auto; width: 300px;margin: auto; text-align: center">Excel</h1>
+      </div>
       
-      <!-- style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" -->
-
-      <div class="aligncenter">
-          <h1 style="text-align: center; padding-top: 30px; font-size: 50px">Excel</h1>
+      <div style="padding-top: 10px; display: block; margin-left: auto; margin-right: auto; width: 300px;margin: auto;">
+        <div class="input-group">
+            <input id="passwordExcel" type="password" class="form-control" placeholder="Senha"/>
+            <span class="input-group-append">
+                <button id="buttonGerarExcel" class="btn btn-outline-secondary" type="button" onclick="gerarExcel()">Gerar excel</button>
+            </span>
         </div>
-      
-      <div class="row">
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4">
-              <div class="input-group mb-3">
-                  <input id="passwordExcel" type="password" class="form-control" placeholder="Senha"/>
-                  <span class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" onclick="gerarExcel()">Gerar excel</button>
-                  </span>
-              </div>
-          </div>
-          <div class="col-lg-4"></div>
       </div>
 
-      
+      <div id="loading" style="display: none;">
+          <p style="text-align: center; padding-top: 100px; font-size: 20px">Processando...</p>
+          <img src="../images/timer.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
 
-      <h1 style="text-align: center; padding-top: 20px; font-size: 50px">* DATATABLE RESULT</h1>
+      <div id="avisoSenha" style="display: none;">
+          <p style="text-align: center; padding-top: 100px; font-size: 20px">Senha incorreta!</p>
+          <img src="../images/aviso.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
 
-      
+      <div id="avisoVazio" style="display: none;">
+          <p style="text-align: center; padding-top: 100px; font-size: 20px">O campo de senha é obrigatório!</p>
+          <img src="../images/aviso.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
+    
+      <div id="sucesso" style="display: none;">
+        <p style="text-align: center; padding-top: 100px; font-size: 20px">Planilhas geradas com sucesso!</p>
+        <img src="../images/true.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
+
+      <div id="erro" style="display: none;">
+          <p style="text-align: center; padding-top: 100px; font-size: 20px">Erro, contate o administrador do sistema!</p>
+          <img src="../images/false.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/ajax.js"></script>
+    <script src="../lib/notify.js"></script>
     <script src="../js/main.js"></script>
   </body>
 </html>
