@@ -133,6 +133,8 @@ function enviarEmail () {
 }
 
 function atualizarBairroTeste () {
+    document.getElementById('resultBairroTeste').style.display = 'none';
+    document.getElementById('resultBairroProducao').style.display = 'none';
     var passwordBairro = document.getElementById('passwordBairro');
     var table = document.getElementById("tableBairroTeste");
 
@@ -220,6 +222,8 @@ function atualizarBairroTeste () {
 }
 
 function atualizarBairroProucao () {
+    document.getElementById('resultBairroTeste').style.display = 'none';
+    document.getElementById('resultBairroProducao').style.display = 'none';
     var passwordBairro = document.getElementById('passwordBairro');
     var table = document.getElementById("tableBairroProducao");
 
@@ -304,4 +308,361 @@ function atualizarBairroProucao () {
             }, 1500);
     });
     }
+}
+
+function atualizarTematicoTeste () {
+    document.getElementById('resultTematicoTeste').style.display = 'none';
+    document.getElementById('resultTematicoProducao').style.display = 'none';
+    var passwordTematico = document.getElementById('passwordTematico');
+    var table = document.getElementById("tableTematicoTeste");
+
+    if (passwordTematico.value == '') {
+        document.getElementById('loadingT').style.display = 'block';
+        $('#buttonAtualizarTematico').attr('disabled','disabled');
+        document.getElementById('avisoSenhaT').style.display = 'none';
+        document.getElementById('avisoVazioT').style.display = 'none';
+        document.getElementById('sucessoT').style.display = 'none';
+        document.getElementById('erroT').style.display = 'none';
+        setTimeout(function(){
+          $('#buttonAtualizarTematico').removeAttr('disabled');
+          document.getElementById('loadingT').style.display = 'none';
+          document.getElementById('avisoSenhaT').style.display = 'none';
+          document.getElementById('avisoVazioT').style.display = 'block';
+          document.getElementById('sucessoT').style.display = 'none';
+          document.getElementById('erroT').style.display = 'none';
+          document.getElementById('passwordTematico').focus();
+        }, 1500);
+    } else {
+        document.getElementById('loadingT').style.display = 'block';
+        $('#buttonAtualizarTematico').attr('disabled','disabled');
+        document.getElementById('avisoSenhaT').style.display = 'none';
+        document.getElementById('avisoVazioT').style.display = 'none';
+        document.getElementById('sucessoT').style.display = 'none';
+        document.getElementById('erroT').style.display = 'none'; 
+
+        var data = {
+            password: passwordTematico.value
+        };
+
+        $.post('http://localhost:3000/dashtematicoteste',
+        data)
+        .done(function(data) {
+           if (data.Erro == 'Senha incorreta!') {
+            setTimeout(function(){
+            document.getElementById('loadingT').style.display = 'none';
+            $('#buttonAtualizarTematico').removeAttr('disabled');
+            document.getElementById('avisoSenhaT').style.display = 'block';
+            document.getElementById('avisoVazioT').style.display = 'none';
+            document.getElementById('sucessoT').style.display = 'none';
+            document.getElementById('erroT').style.display = 'none';
+            document.getElementById('passwordBairro').focus();
+            }, 1500);
+           } else if (data.msg == 'DADOS DE BAIRROS (TEMÁTICO) ATUALIZADO NO DASHBOARD DE TESTE') {
+                setTimeout(function(){
+                document.getElementById('loadingT').style.display = 'none';
+                $('#buttonAtualizarTematico').removeAttr('disabled');
+                document.getElementById('avisoSenhaT').style.display = 'none';
+                document.getElementById('avisoVazioT').style.display = 'none';
+                document.getElementById('sucessoT').style.display = 'none';
+                document.getElementById('erroT').style.display = 'none';
+
+                for (var i = document.getElementById('tdTematicoTeste').childNodes.length - 1; i >= 0; i--) {
+                  var node = document.getElementById("tdTematicoTeste");
+                  if(document.getElementById('tdTematicoTeste').childNodes.length > 1){
+                    $(table).find('tbody').remove();
+                    $(table).append("<tbody id='tdTematicoTeste'></tbody>");
+                  }
+                };
+
+                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                    $(table).find('tbody').append(
+                      "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
+                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
+                      + "</div></td></tr>");
+                  }
+
+                  $('#tableTematicoTeste').dynatable();
+                  document.getElementById('resultTematicoTeste').style.display = 'block';
+                 }, 1500);
+           }
+        }).fail(function(response) {
+            setTimeout(function(){
+            document.getElementById('loadingT').style.display = 'none';
+            $('#buttonAtualizarTematico').removeAttr('disabled');
+            document.getElementById('avisoSenhaT').style.display = 'none';
+            document.getElementById('avisoVazioT').style.display = 'none';
+            document.getElementById('sucessoT').style.display = 'none';
+            document.getElementById('erroT').style.display = 'block  ';
+            }, 1500);
+    });
+    }
+}
+
+function atualizarTematicoProducao () {
+    document.getElementById('resultTematicoTeste').style.display = 'none';
+    document.getElementById('resultTematicoProducao').style.display = 'none';
+    var passwordTematico = document.getElementById('passwordTematico');
+    var table = document.getElementById("tableTematicoProducao");
+
+    if (passwordTematico.value == '') {
+        document.getElementById('loadingT').style.display = 'block';
+        $('#buttonAtualizarTematico').attr('disabled','disabled');
+        document.getElementById('avisoSenhaT').style.display = 'none';
+        document.getElementById('avisoVazioT').style.display = 'none';
+        document.getElementById('sucessoT').style.display = 'none';
+        document.getElementById('erroT').style.display = 'none';
+        setTimeout(function(){
+          $('#buttonAtualizarTematico').removeAttr('disabled');
+          document.getElementById('loadingT').style.display = 'none';
+          document.getElementById('avisoSenhaT').style.display = 'none';
+          document.getElementById('avisoVazioT').style.display = 'block';
+          document.getElementById('sucessoT').style.display = 'none';
+          document.getElementById('erroT').style.display = 'none';
+          document.getElementById('passwordTematico').focus();
+        }, 1500);
+    } else {
+        document.getElementById('loadingT').style.display = 'block';
+        $('#buttonAtualizarTematico').attr('disabled','disabled');
+        document.getElementById('avisoSenhaT').style.display = 'none';
+        document.getElementById('avisoVazioT').style.display = 'none';
+        document.getElementById('sucessoT').style.display = 'none';
+        document.getElementById('erroT').style.display = 'none'; 
+
+        var data = {
+            password: passwordTematico.value
+        };
+
+        $.post('http://localhost:3000/dashtematicaprod',
+        data)
+        .done(function(data) {
+           if (data.Erro == 'Senha incorreta!') {
+            setTimeout(function(){
+            document.getElementById('loadingT').style.display = 'none';
+            $('#buttonAtualizarTematico').removeAttr('disabled');
+            document.getElementById('avisoSenhaT').style.display = 'block';
+            document.getElementById('avisoVazioT').style.display = 'none';
+            document.getElementById('sucessoT').style.display = 'none';
+            document.getElementById('erroT').style.display = 'none';
+            document.getElementById('passwordBairro').focus();
+            }, 1500);
+           } else if (data.msg == 'DADOS DE BAIRROS (TEMÁTICO) ATUALIZADO NO DASHBOARD DE PRODUÇÃO') {
+                setTimeout(function(){
+                document.getElementById('loadingT').style.display = 'none';
+                $('#buttonAtualizarTematico').removeAttr('disabled');
+                document.getElementById('avisoSenhaT').style.display = 'none';
+                document.getElementById('avisoVazioT').style.display = 'none';
+                document.getElementById('sucessoT').style.display = 'none';
+                document.getElementById('erroT').style.display = 'none';
+
+                for (var i = document.getElementById('tdTematicoProducao').childNodes.length - 1; i >= 0; i--) {
+                  var node = document.getElementById("tdTematicoProducao");
+                  if(document.getElementById('tdTematicoProducao').childNodes.length > 1){
+                    $(table).find('tbody').remove();
+                    $(table).append("<tbody id='tdTematicoProducao'></tbody>");
+                  }
+                };
+
+                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                    $(table).find('tbody').append(
+                      "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
+                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
+                      + "</div></td></tr>");
+                  }
+
+                  $('#tableTematicoProducao').dynatable();
+                  document.getElementById('resultTematicoProducao').style.display = 'block';
+                 }, 1500);
+           }
+        }).fail(function(response) {
+            setTimeout(function(){
+            document.getElementById('loadingT').style.display = 'none';
+            $('#buttonAtualizarTematico').removeAttr('disabled');
+            document.getElementById('avisoSenhaT').style.display = 'none';
+            document.getElementById('avisoVazioT').style.display = 'none';
+            document.getElementById('sucessoT').style.display = 'none';
+            document.getElementById('erroT').style.display = 'block  ';
+            }, 1500);
+    });
+    }
+}
+
+
+function atualizarGeralTeste () {
+  document.getElementById('resultGeralTeste').style.display = 'none';
+  document.getElementById('resultGeralProducao').style.display = 'none';
+  var passwordGeral = document.getElementById('passwordGeral');
+  var table = document.getElementById("tableTGeralTeste");
+
+  if (passwordGeral.value == '') {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none';
+      setTimeout(function(){
+        $('#buttonAtualizarGeral').removeAttr('disabled');
+        document.getElementById('loadingG').style.display = 'none';
+        document.getElementById('avisoSenhaG').style.display = 'none';
+        document.getElementById('avisoVazioG').style.display = 'block';
+        document.getElementById('sucessoG').style.display = 'none';
+        document.getElementById('erroG').style.display = 'none';
+        document.getElementById('passwordGeral').focus();
+      }, 1500);
+  } else {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none'; 
+
+      var data = {
+          password: passwordGeral.value
+      };
+
+      $.post('http://localhost:3000/dashgeralteste',
+      data)
+      .done(function(data) {
+         if (data.Erro == 'Senha incorreta!') {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'block';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'none';
+          document.getElementById('passwordGeral').focus();
+          }, 1500);
+         } else if (data.msg == 'DADOS GERAL ATUALIZADO NO DASHBOARD DE TESTE') {
+              setTimeout(function(){
+              document.getElementById('loadingG').style.display = 'none';
+              $('#buttonAtualizarGeral').removeAttr('disabled');
+              document.getElementById('avisoSenhaG').style.display = 'none';
+              document.getElementById('avisoVazioG').style.display = 'none';
+              document.getElementById('sucessoG').style.display = 'none';
+              document.getElementById('erroG').style.display = 'none';
+
+              for (var i = document.getElementById('tdGeralTeste').childNodes.length - 1; i >= 0; i--) {
+                var node = document.getElementById("tdGeralTeste");
+                if(document.getElementById('tdGeralTeste').childNodes.length > 1){
+                  $(table).find('tbody').remove();
+                  $(table).append("<tbody id='tdGeralTeste'></tbody>");
+                }
+              };
+
+              for (let i = data.log.addResults.length - 1; i >= 0; i--) {
+                  $(table).find('tbody').append(
+                    "<tr><td><div>" + data.log.addResults[i].objectId
+                    + "</div></td><td><div title='"+ data.log.addResults[i].success +"'>" + data.log.addResults[i].success
+                    + "</div></td><td><div title='"+ data.log.addResults[i].uniqueId +"'>" + data.log.addResults[i].uniqueId
+                    + "</div></td></tr>");
+                }
+
+                $('#tableTGeralTeste').dynatable();
+                document.getElementById('resultGeralTeste').style.display = 'block';
+               }, 1500);
+         }
+      }).fail(function(response) {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'none';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'block  ';
+          }, 1500);
+  });
+  }
+}
+
+function atualizarGeralProducao () {
+  document.getElementById('resultGeralTeste').style.display = 'none';
+  document.getElementById('resultGeralProducao').style.display = 'none';
+  var passwordGeral = document.getElementById('passwordGeral');
+  var table = document.getElementById("tableTGeralProducao");
+
+  if (passwordGeral.value == '') {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none';
+      setTimeout(function(){
+        $('#buttonAtualizarGeral').removeAttr('disabled');
+        document.getElementById('loadingG').style.display = 'none';
+        document.getElementById('avisoSenhaG').style.display = 'none';
+        document.getElementById('avisoVazioG').style.display = 'block';
+        document.getElementById('sucessoG').style.display = 'none';
+        document.getElementById('erroG').style.display = 'none';
+        document.getElementById('passwordGeral').focus();
+      }, 1500);
+  } else {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none'; 
+
+      var data = {
+          password: passwordGeral.value
+      };
+
+      $.post('http://localhost:3000/dashgeralprod',
+      data)
+      .done(function(data) {
+         if (data.Erro == 'Senha incorreta!') {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'block';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'none';
+          document.getElementById('passwordGeral').focus();
+          }, 1500);
+         } else if (data.msg == 'DADOS GERAL ATUALIZADO NO DASHBOARD DE PRODUÇÃO') {
+              setTimeout(function(){
+              document.getElementById('loadingG').style.display = 'none';
+              $('#buttonAtualizarGeral').removeAttr('disabled');
+              document.getElementById('avisoSenhaG').style.display = 'none';
+              document.getElementById('avisoVazioG').style.display = 'none';
+              document.getElementById('sucessoG').style.display = 'none';
+              document.getElementById('erroG').style.display = 'none';
+
+              for (var i = document.getElementById('tdGeralProducao').childNodes.length - 1; i >= 0; i--) {
+                var node = document.getElementById("tdGeralProducao");
+                if(document.getElementById('tdGeralProducao').childNodes.length > 1){
+                  $(table).find('tbody').remove();
+                  $(table).append("<tbody id='tdGeralProducao'></tbody>");
+                }
+              };
+
+              for (let i = data.log.addResults.length - 1; i >= 0; i--) {
+                  $(table).find('tbody').append(
+                    "<tr><td><div>" + data.log.addResults[i].objectId
+                    + "</div></td><td><div title='"+ data.log.addResults[i].success +"'>" + data.log.addResults[i].success
+                    + "</div></td><td><div title='"+ data.log.addResults[i].uniqueId +"'>" + data.log.addResults[i].uniqueId
+                    + "</div></td></tr>");
+                }
+
+                $('#tableTGeralProducao').dynatable();
+                document.getElementById('resultGeralProducao').style.display = 'block';
+               }, 1500);
+         }
+      }).fail(function(response) {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'none';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'block  ';
+          }, 1500);
+  });
+  }
 }
