@@ -44,10 +44,10 @@
       <div class="input-group">
         <input id="passwordBairro" type="password" class="form-control" placeholder="Senha">
         <div class="input-group-append">
-          <button id="buttonAtualizarBairroTeste" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Atualizar</button>
+          <button id="buttonAtualizarBairro" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Atualizar</button>
           <div class="dropdown-menu">
             <a class="dropdown-item" style="cursor: pointer;"  onclick="atualizarBairroTeste()">Bairros Teste</a>
-            <a class="dropdown-item" style="cursor: pointer;">Bairros Produção</a>
+            <a class="dropdown-item" style="cursor: pointer;" onclick="atualizarBairroProucao()">Bairros Produção</a>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
           <img src="../images/false.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
       </div>
 
-      <div class = "container" style="padding-top: 10px;">
+      <div id="resultBairroTeste" class = "container" style="padding-top:20px; display:none;">
         <table id="tableBairroTeste" class="table table-striped table-bordered" cellspacing="0" width="100%">
               <thead>
                   <tr>
@@ -97,10 +97,32 @@
               </tfoot>
       
               <tbody id='tdBairroTeste'>
-                  <td>teste</td>
-                  <td>teste</td>
-                  <td>teste</td>
               </tbody>
+
+          </table>
+       </div>
+
+       <div id="resultBairroProducao" class = "container" style="padding-top:20px; display:none;">
+        <table id="tableBairroProducao" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                    <th id="th">ObjectId</th>
+                    <th id="th">Success</th>
+                    <th id="th">UniqueId</th>
+                  </tr>
+              </thead>
+       
+              <tfoot>
+                  <tr>
+                    <th id="th">ObjectId</th>
+                    <th id="th">Success</th>
+                    <th id="th">UniqueId</th>
+                  </tr>
+              </tfoot>
+      
+              <tbody id='tdBairroProducao'>
+              </tbody>
+
           </table>
        </div>
 

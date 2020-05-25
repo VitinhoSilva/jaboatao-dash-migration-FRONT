@@ -134,15 +134,17 @@ function enviarEmail () {
 
 function atualizarBairroTeste () {
     var passwordBairro = document.getElementById('passwordBairro');
+    var table = document.getElementById("tableBairroTeste");
+
     if (passwordBairro.value == '') {
         document.getElementById('loadingB').style.display = 'block';
-        $('#buttonAtualizarBairroTeste').attr('disabled','disabled');
+        $('#buttonAtualizarBairro').attr('disabled','disabled');
         document.getElementById('avisoSenhaB').style.display = 'none';
         document.getElementById('avisoVazioB').style.display = 'none';
         document.getElementById('sucessoB').style.display = 'none';
         document.getElementById('erroB').style.display = 'none';
         setTimeout(function(){
-          $('#buttonAtualizarBairroTeste').removeAttr('disabled');
+          $('#buttonAtualizarBairro').removeAttr('disabled');
           document.getElementById('loadingB').style.display = 'none';
           document.getElementById('avisoSenhaB').style.display = 'none';
           document.getElementById('avisoVazioB').style.display = 'block';
@@ -152,7 +154,7 @@ function atualizarBairroTeste () {
         }, 1500);
     } else {
         document.getElementById('loadingB').style.display = 'block';
-        $('#buttonAtualizarBairroTeste').attr('disabled','disabled');
+        $('#buttonAtualizarBairro').attr('disabled','disabled');
         document.getElementById('avisoSenhaB').style.display = 'none';
         document.getElementById('avisoVazioB').style.display = 'none';
         document.getElementById('sucessoB').style.display = 'none';
@@ -168,7 +170,7 @@ function atualizarBairroTeste () {
            if (data.Erro == 'Senha incorreta!') {
             setTimeout(function(){
             document.getElementById('loadingB').style.display = 'none';
-            $('#buttonAtualizarBairroTeste').removeAttr('disabled');
+            $('#buttonAtualizarBairro').removeAttr('disabled');
             document.getElementById('avisoSenhaB').style.display = 'block';
             document.getElementById('avisoVazioB').style.display = 'none';
             document.getElementById('sucessoB').style.display = 'none';
@@ -178,13 +180,12 @@ function atualizarBairroTeste () {
            } else if (data.msg == 'DADOS DE BAIRROS (PONTOS) ATUALIZADO NO DASHBOARD DE TESTE') {
                 setTimeout(function(){
                 document.getElementById('loadingB').style.display = 'none';
-                $('#buttonAtualizarBairroTeste').removeAttr('disabled');
+                $('#buttonAtualizarBairro').removeAttr('disabled');
                 document.getElementById('avisoSenhaB').style.display = 'none';
                 document.getElementById('avisoVazioB').style.display = 'none';
-                document.getElementById('sucessoB').style.display = 'block';
+                document.getElementById('sucessoB').style.display = 'none';
                 document.getElementById('erroB').style.display = 'none';
 
-                var table = document.getElementById("tableBairroTeste");
                 for (var i = document.getElementById('tdBairroTeste').childNodes.length - 1; i >= 0; i--) {
                   var node = document.getElementById("tdBairroTeste");
                   if(document.getElementById('tdBairroTeste').childNodes.length > 1){
@@ -201,14 +202,14 @@ function atualizarBairroTeste () {
                       + "</div></td></tr>");
                   }
 
-                }, 1500);
-                $('#tableBairroTeste').dynatable();
-               
+                  $('#tableBairroTeste').dynatable();
+                  document.getElementById('resultBairroTeste').style.display = 'block';
+                 }, 1500);
            }
         }).fail(function(response) {
             setTimeout(function(){
             document.getElementById('loadingB').style.display = 'none';
-            $('#buttonAtualizarBairroTeste').removeAttr('disabled');
+            $('#buttonAtualizarBairro').removeAttr('disabled');
             document.getElementById('avisoSenhaB').style.display = 'none';
             document.getElementById('avisoVazioB').style.display = 'none';
             document.getElementById('sucessoB').style.display = 'none';
@@ -218,6 +219,89 @@ function atualizarBairroTeste () {
     }
 }
 
-$(document).ready(function() {
-    $('#tableBairroTeste').dynatable();
-});
+function atualizarBairroProucao () {
+    var passwordBairro = document.getElementById('passwordBairro');
+    var table = document.getElementById("tableBairroProducao");
+
+    if (passwordBairro.value == '') {
+        document.getElementById('loadingB').style.display = 'block';
+        $('#buttonAtualizarBairro').attr('disabled','disabled');
+        document.getElementById('avisoSenhaB').style.display = 'none';
+        document.getElementById('avisoVazioB').style.display = 'none';
+        document.getElementById('sucessoB').style.display = 'none';
+        document.getElementById('erroB').style.display = 'none';
+        setTimeout(function(){
+          $('#buttonAtualizarBairro').removeAttr('disabled');
+          document.getElementById('loadingB').style.display = 'none';
+          document.getElementById('avisoSenhaB').style.display = 'none';
+          document.getElementById('avisoVazioB').style.display = 'block';
+          document.getElementById('sucessoB').style.display = 'none';
+          document.getElementById('erroB').style.display = 'none';
+          document.getElementById('passwordBairro').focus();
+        }, 1500);
+    } else {
+        document.getElementById('loadingB').style.display = 'block';
+        $('#buttonAtualizarBairro').attr('disabled','disabled');
+        document.getElementById('avisoSenhaB').style.display = 'none';
+        document.getElementById('avisoVazioB').style.display = 'none';
+        document.getElementById('sucessoB').style.display = 'none';
+        document.getElementById('erroB').style.display = 'none'; 
+
+        var data = {
+            password: passwordBairro.value
+        };
+
+        $.post('http://localhost:3000/dashbairroprod',
+        data)
+        .done(function(data) {
+           if (data.Erro == 'Senha incorreta!') {
+            setTimeout(function(){
+            document.getElementById('loadingB').style.display = 'none';
+            $('#buttonAtualizarBairro').removeAttr('disabled');
+            document.getElementById('avisoSenhaB').style.display = 'block';
+            document.getElementById('avisoVazioB').style.display = 'none';
+            document.getElementById('sucessoB').style.display = 'none';
+            document.getElementById('erroB').style.display = 'none';
+            document.getElementById('passwordBairro').focus();
+            }, 1500);
+           } else if (data.msg == 'DADOS DE BAIRROS (PONTOS) ATUALIZADO NO DASHBOARD DE PRODUÇÃO') {
+                setTimeout(function(){
+                document.getElementById('loadingB').style.display = 'none';
+                $('#buttonAtualizarBairro').removeAttr('disabled');
+                document.getElementById('avisoSenhaB').style.display = 'none';
+                document.getElementById('avisoVazioB').style.display = 'none';
+                document.getElementById('sucessoB').style.display = 'none';
+                document.getElementById('erroB').style.display = 'none';
+
+                for (var i = document.getElementById('tdBairroProducao').childNodes.length - 1; i >= 0; i--) {
+                  var node = document.getElementById("tdBairroProducao");
+                  if(document.getElementById('tdBairroProducao').childNodes.length > 1){
+                    $(table).find('tbody').remove();
+                    $(table).append("<tbody id='tdBairroProducao'></tbody>");
+                  }
+                };
+
+                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                    $(table).find('tbody').append(
+                      "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
+                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
+                      + "</div></td></tr>");
+                  }
+
+                  $('#tableBairroProducao').dynatable();
+                  document.getElementById('resultBairroProducao').style.display = 'block';
+                 }, 1500);
+           }
+        }).fail(function(response) {
+            setTimeout(function(){
+            document.getElementById('loadingB').style.display = 'none';
+            $('#buttonAtualizarBairro').removeAttr('disabled');
+            document.getElementById('avisoSenhaB').style.display = 'none';
+            document.getElementById('avisoVazioB').style.display = 'none';
+            document.getElementById('sucessoB').style.display = 'none';
+            document.getElementById('erroB').style.display = 'block  ';
+            }, 1500);
+    });
+    }
+}
