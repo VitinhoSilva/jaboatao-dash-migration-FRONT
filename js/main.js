@@ -1,3 +1,34 @@
+function upload() {
+  var fileToUpload =  $('#arquivoUpload1').prop('files')[0];
+  console.log(fileToUpload);
+
+ if (fileToUpload.name) {
+  console.log(fileToUpload.name);
+    $.ajax({
+      type : "POST",
+      url: "http://localhost:3000/upload",
+      dataType : "json",
+      contentType: false,
+      data : fileToUpload,
+      async: true,
+      cache: false,
+      processData: false 
+  }).done(function(response){
+    if (response == "Arquivo vazio!") {
+      console.log(response);
+    } else if (result == "Arquivo salvo com sucesso!") {
+      console.log(response);
+    }
+  }).fail(function(err){
+     console.log(err)
+  }).always(function(){
+    alert("AJAX request finished!");
+  });
+  }
+
+  }
+
+
 function gerarExcel () {
     var passwordExcel = document.getElementById('passwordExcel');
     if (passwordExcel.value == '') {
