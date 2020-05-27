@@ -41,24 +41,15 @@
       <div>
         <h1 style="padding-top: 30px; display: block; margin-left: auto; margin-right: auto; width: 300px;margin: auto; text-align: center">Upload</h1>
       </div>
-      
-      <div style="padding-top: 10px; display: block; margin-left: auto; margin-right: auto; width: 500px;margin: auto;">
-          <div class="input-group">
-            <form id='uploadF' ref='uploadForm' class="form-group" action='http://localhost:3000/upload' method='post' encType="multipart/form-data">
-              <input id="arquivoUpload" type="file" name="file" style="cursor:pointer;"/>
-              <input id="buttonUpload" type='submit' value='Upload' style="cursor:pointer;"/>
-           </form>
-          </div>
-      </div>
 
       <div style="padding-top: 10px; display: block; margin-left: auto; margin-right: auto; width: 450px;margin: auto;">
-          <div class="input-group">
-              <input id="arquivoUpload1" type="file" name="file" class="form-control" style="cursor:pointer;"/>
-              <span class="input-group-append">
-                  <button id="buttonUpload1" class="btn btn-outline-secondary" type="button" onclick="upload()">Enviar</button>
-              </span>
-          </div>
+        <div class="input-group">
+            <input id="uploadExcel" type="file" name="uploadExcel" class="form-control"/>
+            <span class="input-group-append">
+                <button id="buttonUploadExcel" class="btn btn-outline-secondary" type="button">Enviar</button>
+            </span>
         </div>
+      </div>
 
       <div id="loadingU" style="display: none;">
           <p style="text-align: center; padding-top: 100px; font-size: 20px">Processando...</p>
@@ -67,6 +58,11 @@
 
       <div id="avisoVazioU" style="display: none;">
           <p style="text-align: center; padding-top: 100px; font-size: 20px">O campo de arquivo é obrigatório!</p>
+          <img src="../images/aviso.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
+
+      <div id="avisoTipoU" style="display: none;">
+          <p style="text-align: center; padding-top: 100px; font-size: 20px">O arquivo não possui uma extensão (.xlsx) permitida!</p>
           <img src="../images/aviso.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
       </div>
     
@@ -79,6 +75,86 @@
           <p style="text-align: center; padding-top: 100px; font-size: 20px">Erro, contate o administrador do sistema!</p>
           <img src="../images/false.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
       </div>
+
+      <div id="erroSalvar" style="display: none;">
+          <p style="text-align: center; padding-top: 100px; font-size: 20px">Erro inesperado, tente novamente ou contate o administrador do sistema!</p>
+          <img src="../images/false.png" style="padding-top: 20px; display: block; margin-left: auto; margin-right: auto;" width="80px" height="100px">
+      </div>
+
+      <script>
+          const uploadExcel = document.getElementById('uploadExcel');
+          const buttonUploadExcel = document.getElementById('buttonUploadExcel');
+          
+          buttonUploadExcel.addEventListener('click', e => {
+            document.getElementById('loadingU').style.display = 'block';
+            document.getElementById('avisoVazioU').style.display = 'none';
+            document.getElementById('avisoVazioU').style.display = 'none';
+            document.getElementById('sucessoU').style.display = 'none';
+            document.getElementById('erroU').style.display = 'none';
+            document.getElementById('avisoTipoU').style.display = 'none';
+            document.getElementById('erroSalvar').style.display = 'none';
+              const url = 'http://localhost:3000/upload';
+              const formData = new FormData();
+              formData.append('file', uploadExcel.files[0]);
+              fetch(url, {
+                method: 'post',
+                body: formData
+              }).then(function(response) { 
+              response.json().then(function(data) {
+                if (data == 'Arquivo salvo com sucesso!') {
+                  setTimeout(function(){
+                    document.getElementById('loadingU').style.display = 'none';
+                    document.getElementById('avisoVazioU').style.display = 'none';
+                    document.getElementById('sucessoU').style.display = 'block';
+                    document.getElementById('erroU').style.display = 'none';
+                    document.getElementById('avisoTipoU').style.display = 'none';
+                    document.getElementById('erroSalvar').style.display = 'none';
+                  }, 1500);
+                } else if (data == 'Arquivo vazio!') {
+                  setTimeout(function(){
+                    document.getElementById('loadingU').style.display = 'none';
+                    document.getElementById('avisoVazioU').style.display = 'block';
+                    document.getElementById('sucessoU').style.display = 'none';
+                    document.getElementById('erroU').style.display = 'none';
+                    document.getElementById('avisoTipoU').style.display = 'none';
+                    document.getElementById('erroSalvar').style.display = 'none';
+                    document.getElementById('uploadExcel').focus();
+                  }, 1500);
+                } else if (data == 'O arquivo não possui uma extensão (.xlsx) permitida!') {
+                  setTimeout(function(){
+                    document.getElementById('loadingU').style.display = 'none';
+                    document.getElementById('avisoVazioU').style.display = 'none';
+                    document.getElementById('sucessoU').style.display = 'none';
+                    document.getElementById('erroU').style.display = 'none';
+                    document.getElementById('avisoTipoU').style.display = 'block';
+                    document.getElementById('erroSalvar').style.display = 'none';
+                    document.getElementById('uploadExcel').focus();
+                  }, 1500);
+                } else if (data == 'Erro no upload') {
+                  setTimeout(function(){
+                    document.getElementById('loadingU').style.display = 'none';
+                    document.getElementById('avisoVazioU').style.display = 'none';
+                    document.getElementById('sucessoU').style.display = 'none';
+                    document.getElementById('erroU').style.display = 'none';
+                    document.getElementById('avisoTipoU').style.display = 'none';
+                    document.getElementById('erroSalvar').style.display = 'block';
+                    document.getElementById('uploadExcel').focus();
+                  }, 1500);
+                }
+              });
+      
+              }).catch(function(err) { 
+                setTimeout(function(){
+                  document.getElementById('loadingU').style.display = 'none';
+                  document.getElementById('avisoVazioU').style.display = 'none';
+                  document.getElementById('sucessoU').style.display = 'none';
+                  document.getElementById('avisoTipoU').style.display = 'none';
+                  document.getElementById('erroSalvar').style.display = 'none';
+                  document.getElementById('erroU').style.display = 'block';
+                }, 1500);
+              });
+          });
+        </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
