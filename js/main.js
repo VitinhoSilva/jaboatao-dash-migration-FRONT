@@ -1,3 +1,81 @@
+function upload() {
+  $('#buttonUploadExcel').attr('disabled','disabled');
+  const uploadExcel = document.getElementById('uploadExcel');
+  const buttonUploadExcel = document.getElementById('buttonUploadExcel');
+  document.getElementById('loadingU').style.display = 'block';
+  document.getElementById('avisoVazioU').style.display = 'none';
+  document.getElementById('avisoVazioU').style.display = 'none';
+  document.getElementById('sucessoU').style.display = 'none';
+  document.getElementById('erroU').style.display = 'none';
+  document.getElementById('avisoTipoU').style.display = 'none';
+  document.getElementById('erroSalvar').style.display = 'none';
+    const url = 'http://localhost:3000/upload';
+    const formData = new FormData();
+    formData.append('file', uploadExcel.files[0]);
+    fetch(url, {
+      method: 'post',
+      body: formData
+    }).then(function(response) { 
+    response.json().then(function(data) {
+      if (data == 'Arquivo salvo com sucesso!') {
+        setTimeout(function(){
+          document.getElementById('loadingU').style.display = 'none';
+          document.getElementById('avisoVazioU').style.display = 'none';
+          document.getElementById('sucessoU').style.display = 'block';
+          document.getElementById('erroU').style.display = 'none';
+          document.getElementById('avisoTipoU').style.display = 'none';
+          document.getElementById('erroSalvar').style.display = 'none';
+          $('#buttonUploadExcel').removeAttr('disabled');
+        }, 1500);
+      } else if (data == 'Arquivo vazio!') {
+        setTimeout(function(){
+          document.getElementById('loadingU').style.display = 'none';
+          document.getElementById('avisoVazioU').style.display = 'block';
+          document.getElementById('sucessoU').style.display = 'none';
+          document.getElementById('erroU').style.display = 'none';
+          document.getElementById('avisoTipoU').style.display = 'none';
+          document.getElementById('erroSalvar').style.display = 'none';
+          $('#buttonUploadExcel').removeAttr('disabled');
+          document.getElementById('uploadExcel').focus();
+        }, 1500);
+      } else if (data == 'O arquivo não possui uma extensão (.xlsx) permitida!') {
+        setTimeout(function(){
+          document.getElementById('loadingU').style.display = 'none';
+          document.getElementById('avisoVazioU').style.display = 'none';
+          document.getElementById('sucessoU').style.display = 'none';
+          document.getElementById('erroU').style.display = 'none';
+          document.getElementById('avisoTipoU').style.display = 'block';
+          document.getElementById('erroSalvar').style.display = 'none';
+          $('#buttonUploadExcel').removeAttr('disabled');
+          document.getElementById('uploadExcel').focus();
+        }, 1500);
+      } else if (data == 'Erro no upload') {
+        setTimeout(function(){
+          document.getElementById('loadingU').style.display = 'none';
+          document.getElementById('avisoVazioU').style.display = 'none';
+          document.getElementById('sucessoU').style.display = 'none';
+          document.getElementById('erroU').style.display = 'none';
+          document.getElementById('avisoTipoU').style.display = 'none';
+          document.getElementById('erroSalvar').style.display = 'block';
+          $('#buttonUploadExcel').removeAttr('disabled');
+          document.getElementById('uploadExcel').focus();
+        }, 1500);
+      }
+    });
+
+    }).catch(function(err) { 
+      setTimeout(function(){
+        document.getElementById('loadingU').style.display = 'none';
+        document.getElementById('avisoVazioU').style.display = 'none';
+        document.getElementById('sucessoU').style.display = 'none';
+        document.getElementById('avisoTipoU').style.display = 'none';
+        document.getElementById('erroSalvar').style.display = 'none';
+        document.getElementById('erroU').style.display = 'block';
+        $('#buttonUploadExcel').removeAttr('disabled');
+      }, 1500);
+    });
+}
+
 function gerarExcel () {
     var passwordExcel = document.getElementById('passwordExcel');
     if (passwordExcel.value == '') {
