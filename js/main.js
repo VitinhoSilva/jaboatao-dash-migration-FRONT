@@ -274,9 +274,10 @@ function atualizarBairroTeste () {
                   }
                 };
 
-                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                for (let i = 0; i < data.log.updateResults.length; i++) {
                     $(table).find('tbody').append(
                       "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div '>" + 'Update'
                       + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
                       + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
                       + "</div></td></tr>");
@@ -363,9 +364,10 @@ function atualizarBairroProucao () {
                   }
                 };
 
-                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                for (let i = 0; i < data.log.updateResults.length; i++) {
                     $(table).find('tbody').append(
                       "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div '>" + 'Update'
                       + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
                       + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
                       + "</div></td></tr>");
@@ -452,9 +454,10 @@ function atualizarTematicoTeste () {
                   }
                 };
 
-                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                for (let i = 0; i < data.log.updateResults.length; i++) {
                     $(table).find('tbody').append(
                       "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div '>" + 'Update'
                       + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
                       + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
                       + "</div></td></tr>");
@@ -541,9 +544,10 @@ function atualizarTematicoProducao () {
                   }
                 };
 
-                for (let i = data.log.updateResults.length - 1; i >= 0; i--) {
+                for (let i = 0; i < data.log.updateResults.length; i++) {
                     $(table).find('tbody').append(
                       "<tr><td><div>" + data.log.updateResults[i].objectId
+                      + "</div></td><td><div '>" + 'Update'
                       + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
                       + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
                       + "</div></td></tr>");
@@ -631,11 +635,21 @@ function atualizarGeralTeste () {
                 }
               };
 
-              for (let i = data.log.addResults.length - 1; i >= 0; i--) {
+              for (let i = 0; i < data.log.deleteResults.length; i++) {
+                $(table).find('tbody').append(
+                  "<tr><td><div>" + data.log.addResults[i].objectId
+                  + "</div></td><td><div '>" + 'Delete'
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
+                  + "</div></td></tr>");
+              }
+
+              for (let i = 0; i < data.log.addResults.length; i++) {
                   $(table).find('tbody').append(
                     "<tr><td><div>" + data.log.addResults[i].objectId
-                    + "</div></td><td><div title='"+ data.log.addResults[i].success +"'>" + data.log.addResults[i].success
-                    + "</div></td><td><div title='"+ data.log.addResults[i].uniqueId +"'>" + data.log.addResults[i].uniqueId
+                    + "</div></td><td><div '>" + 'Add'
+                    + "</div></td><td><div title='" + data.log.addResults[i].success + "'>" + data.log.addResults[i].success
+                    + "</div></td><td><div title='" + data.log.addResults[i].uniqueId + "'>" + data.log.addResults[i].uniqueId
                     + "</div></td></tr>");
                 }
 
@@ -720,9 +734,19 @@ function atualizarGeralProducao () {
                 }
               };
 
-              for (let i = data.log.addResults.length - 1; i >= 0; i--) {
+              for (let i = 0; i < data.log.deleteResults.length; i++) {
+                $(table).find('tbody').append(
+                  "<tr><td><div>" + data.log.addResults[i].objectId
+                  + "</div></td><td><div '>" + 'Delete'
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
+                  + "</div></td></tr>");
+              }
+
+              for (let i = 0; i < data.log.addResults.length; i++) {
                   $(table).find('tbody').append(
                     "<tr><td><div>" + data.log.addResults[i].objectId
+                    + "</div></td><td><div '>" + 'Add'
                     + "</div></td><td><div title='"+ data.log.addResults[i].success +"'>" + data.log.addResults[i].success
                     + "</div></td><td><div title='"+ data.log.addResults[i].uniqueId +"'>" + data.log.addResults[i].uniqueId
                     + "</div></td></tr>");
