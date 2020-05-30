@@ -736,7 +736,7 @@ function atualizarGeralProducao () {
 
               for (let i = 0; i < data.log.deleteResults.length; i++) {
                 $(table).find('tbody').append(
-                  "<tr><td><div>" + data.log.addResults[i].objectId
+                  "<tr><td><div>" + data.log.deleteResults[i].objectId
                   + "</div></td><td><div '>" + 'Delete'
                   + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
                   + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
