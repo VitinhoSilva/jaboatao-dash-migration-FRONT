@@ -570,8 +570,101 @@ function atualizarTematicoProducao () {
     }
 }
 
+function deletarGeralTeste () {
+  document.getElementById('resultGeralTesteDeletar').style.display = 'none';
+  document.getElementById('resultGeralProdDeletar').style.display = 'none';
+  document.getElementById('resultGeralTeste').style.display = 'none';
+  document.getElementById('resultGeralProducao').style.display = 'none';
+  var passwordGeral = document.getElementById('passwordGeral');
+  var table = document.getElementById("tableTGeralTesteDeletar");
+
+  if (passwordGeral.value == '') {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none';
+      setTimeout(function(){
+        $('#buttonAtualizarGeral').removeAttr('disabled');
+        document.getElementById('loadingG').style.display = 'none';
+        document.getElementById('avisoSenhaG').style.display = 'none';
+        document.getElementById('avisoVazioG').style.display = 'block';
+        document.getElementById('sucessoG').style.display = 'none';
+        document.getElementById('erroG').style.display = 'none';
+        document.getElementById('passwordGeral').focus();
+      }, 1500);
+  } else {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none'; 
+
+      var data = {
+          password: passwordGeral.value
+      };
+
+      $.post('http://localhost:3000/deletegeralteste',
+      data)
+      .done(function(data) {
+         if (data.Erro == 'Senha incorreta!') {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'block';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'none';
+          document.getElementById('passwordGeral').focus();
+          }, 1500);
+         } else if (data.msg == 'DADOS GERAL DELETADO NO DASHBOARD DE TESTE') {
+              setTimeout(function(){
+              document.getElementById('loadingG').style.display = 'none';
+              $('#buttonAtualizarGeral').removeAttr('disabled');
+              document.getElementById('avisoSenhaG').style.display = 'none';
+              document.getElementById('avisoVazioG').style.display = 'none';
+              document.getElementById('sucessoG').style.display = 'none';
+              document.getElementById('erroG').style.display = 'none';
+
+              for (var i = document.getElementById('tdGeralTesteDeletar').childNodes.length - 1; i >= 0; i--) {
+                var node = document.getElementById("tdGeralTesteDeletar");
+                if(document.getElementById('tdGeralTesteDeletar').childNodes.length > 1){
+                  $(table).find('tbody').remove();
+                  $(table).append("<tbody id='tdGeralTesteDeletar'></tbody>");
+                }
+              };
+
+              for (let i = 0; i < data.log.deleteResults.length; i++) {
+                $(table).find('tbody').append(
+                  "<tr><td><div>" + data.log.deleteResults[i].objectId
+                  + "</div></td><td><div '>" + 'Delete'
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
+                  + "</div></td></tr>");
+              }
+
+              $('#tableTGeralTesteDeletar').dynatable();
+              document.getElementById('resultGeralTesteDeletar').style.display = 'block';
+              }, 1500);
+         }
+      }).fail(function(response) {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'none';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'block  ';
+          }, 1500);
+  });
+  }
+}
 
 function atualizarGeralTeste () {
+  document.getElementById('resultGeralTesteDeletar').style.display = 'none';
+  document.getElementById('resultGeralProdDeletar').style.display = 'none';
   document.getElementById('resultGeralTeste').style.display = 'none';
   document.getElementById('resultGeralProducao').style.display = 'none';
   var passwordGeral = document.getElementById('passwordGeral');
@@ -637,7 +730,7 @@ function atualizarGeralTeste () {
 
               for (let i = 0; i < data.log.deleteResults.length; i++) {
                 $(table).find('tbody').append(
-                  "<tr><td><div>" + data.log.addResults[i].objectId
+                  "<tr><td><div>" + data.log.deleteResults[i].objectId
                   + "</div></td><td><div '>" + 'Delete'
                   + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
                   + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
@@ -670,7 +763,101 @@ function atualizarGeralTeste () {
   }
 }
 
+function deletarGeralProd () {
+  document.getElementById('resultGeralTesteDeletar').style.display = 'none';
+  document.getElementById('resultGeralProdDeletar').style.display = 'none';
+  document.getElementById('resultGeralTeste').style.display = 'none';
+  document.getElementById('resultGeralProducao').style.display = 'none';
+  var passwordGeral = document.getElementById('passwordGeral');
+  var table = document.getElementById("tableTGeralProdDeletar");
+
+  if (passwordGeral.value == '') {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none';
+      setTimeout(function(){
+        $('#buttonAtualizarGeral').removeAttr('disabled');
+        document.getElementById('loadingG').style.display = 'none';
+        document.getElementById('avisoSenhaG').style.display = 'none';
+        document.getElementById('avisoVazioG').style.display = 'block';
+        document.getElementById('sucessoG').style.display = 'none';
+        document.getElementById('erroG').style.display = 'none';
+        document.getElementById('passwordGeral').focus();
+      }, 1500);
+  } else {
+      document.getElementById('loadingG').style.display = 'block';
+      $('#buttonAtualizarGeral').attr('disabled','disabled');
+      document.getElementById('avisoSenhaG').style.display = 'none';
+      document.getElementById('avisoVazioG').style.display = 'none';
+      document.getElementById('sucessoG').style.display = 'none';
+      document.getElementById('erroG').style.display = 'none'; 
+
+      var data = {
+          password: passwordGeral.value
+      };
+
+      $.post('http://localhost:3000/deletegeralprod',
+      data)
+      .done(function(data) {
+         if (data.Erro == 'Senha incorreta!') {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'block';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'none';
+          document.getElementById('passwordGeral').focus();
+          }, 1500);
+         } else if (data.msg == 'DADOS GERAL DELETADO NO DASHBOARD DE PRODUÇÃO') {
+              setTimeout(function(){
+              document.getElementById('loadingG').style.display = 'none';
+              $('#buttonAtualizarGeral').removeAttr('disabled');
+              document.getElementById('avisoSenhaG').style.display = 'none';
+              document.getElementById('avisoVazioG').style.display = 'none';
+              document.getElementById('sucessoG').style.display = 'none';
+              document.getElementById('erroG').style.display = 'none';
+
+              for (var i = document.getElementById('tableTGeralProdDeletar').childNodes.length - 1; i >= 0; i--) {
+                var node = document.getElementById("tableTGeralProdDeletar");
+                if(document.getElementById('tableTGeralProdDeletar').childNodes.length > 1){
+                  $(table).find('tbody').remove();
+                  $(table).append("<tbody id='tableTGeralProdDeletar'></tbody>");
+                }
+              };
+
+              for (let i = 0; i < data.log.deleteResults.length; i++) {
+                $(table).find('tbody').append(
+                  "<tr><td><div>" + data.log.deleteResults[i].objectId
+                  + "</div></td><td><div '>" + 'Delete'
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
+                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
+                  + "</div></td></tr>");
+              }
+
+              $('#tableTGeralProdDeletar').dynatable();
+              document.getElementById('resultGeralProdDeletar').style.display = 'block';
+              }, 1500);
+         }
+      }).fail(function(response) {
+          setTimeout(function(){
+          document.getElementById('loadingG').style.display = 'none';
+          $('#buttonAtualizarGeral').removeAttr('disabled');
+          document.getElementById('avisoSenhaG').style.display = 'none';
+          document.getElementById('avisoVazioG').style.display = 'none';
+          document.getElementById('sucessoG').style.display = 'none';
+          document.getElementById('erroG').style.display = 'block  ';
+          }, 1500);
+  });
+  }
+}
+
 function atualizarGeralProducao () {
+  document.getElementById('resultGeralTesteDeletar').style.display = 'none';
+  document.getElementById('resultGeralProdDeletar').style.display = 'none';
   document.getElementById('resultGeralTeste').style.display = 'none';
   document.getElementById('resultGeralProducao').style.display = 'none';
   var passwordGeral = document.getElementById('passwordGeral');
