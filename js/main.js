@@ -266,24 +266,18 @@ function atualizarBairroTeste () {
                 document.getElementById('sucessoB').style.display = 'none';
                 document.getElementById('erroB').style.display = 'none';
 
-                for (var i = document.getElementById('tdBairroTeste').childNodes.length - 1; i >= 0; i--) {
-                  var node = document.getElementById("tdBairroTeste");
-                  if(document.getElementById('tdBairroTeste').childNodes.length > 1){
-                    $(table).find('tbody').remove();
-                    $(table).append("<tbody id='tdBairroTeste'></tbody>");
-                  }
-                };
+                let dynatable = $("#tableBairroTeste").dynatable({ 
+                  dataset: { 
+                    records: data.log.updateResults
+                    } 
+                  }, 
+                  { features: {
+                      pushState: false 
+                    }
+                  }).data("dynatable");
+                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
+                        dynatable.process();
 
-                for (let i = 0; i < data.log.updateResults.length; i++) {
-                    $(table).find('tbody').append(
-                      "<tr><td><div>" + data.log.updateResults[i].objectId
-                      + "</div></td><td><div '>" + 'Update'
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
-                      + "</div></td></tr>");
-                  }
-
-                  $('#tableBairroTeste').dynatable();
                   document.getElementById('resultBairroTeste').style.display = 'block';
                  }, 1500);
            }
@@ -356,24 +350,18 @@ function atualizarBairroProucao () {
                 document.getElementById('sucessoB').style.display = 'none';
                 document.getElementById('erroB').style.display = 'none';
 
-                for (var i = document.getElementById('tdBairroProducao').childNodes.length - 1; i >= 0; i--) {
-                  var node = document.getElementById("tdBairroProducao");
-                  if(document.getElementById('tdBairroProducao').childNodes.length > 1){
-                    $(table).find('tbody').remove();
-                    $(table).append("<tbody id='tdBairroProducao'></tbody>");
-                  }
-                };
+                let dynatable = $("#tableBairroProducao").dynatable({ 
+                  dataset: { 
+                    records: data.log.updateResults
+                    } 
+                  }, 
+                  { features: {
+                      pushState: false 
+                    }
+                  }).data("dynatable");
+                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
+                        dynatable.process();
 
-                for (let i = 0; i < data.log.updateResults.length; i++) {
-                    $(table).find('tbody').append(
-                      "<tr><td><div>" + data.log.updateResults[i].objectId
-                      + "</div></td><td><div '>" + 'Update'
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
-                      + "</div></td></tr>");
-                  }
-
-                  $('#tableBairroProducao').dynatable();
                   document.getElementById('resultBairroProducao').style.display = 'block';
                  }, 1500);
            }
@@ -446,24 +434,18 @@ function atualizarTematicoTeste () {
                 document.getElementById('sucessoT').style.display = 'none';
                 document.getElementById('erroT').style.display = 'none';
 
-                for (var i = document.getElementById('tdTematicoTeste').childNodes.length - 1; i >= 0; i--) {
-                  var node = document.getElementById("tdTematicoTeste");
-                  if(document.getElementById('tdTematicoTeste').childNodes.length > 1){
-                    $(table).find('tbody').remove();
-                    $(table).append("<tbody id='tdTematicoTeste'></tbody>");
-                  }
-                };
-
-                for (let i = 0; i < data.log.updateResults.length; i++) {
-                    $(table).find('tbody').append(
-                      "<tr><td><div>" + data.log.updateResults[i].objectId
-                      + "</div></td><td><div '>" + 'Update'
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
-                      + "</div></td></tr>");
-                  }
-
-                  $('#tableTematicoTeste').dynatable();
+                let dynatable = $("#tableTematicoTeste").dynatable({ 
+                  dataset: { 
+                    records: data.log.updateResults
+                    } 
+                  }, 
+                  { features: {
+                      pushState: false 
+                    }
+                  }).data("dynatable");
+                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
+                        dynatable.process();
+                
                   document.getElementById('resultTematicoTeste').style.display = 'block';
                  }, 1500);
            }
@@ -536,24 +518,18 @@ function atualizarTematicoProducao () {
                 document.getElementById('sucessoT').style.display = 'none';
                 document.getElementById('erroT').style.display = 'none';
 
-                for (var i = document.getElementById('tdTematicoProducao').childNodes.length - 1; i >= 0; i--) {
-                  var node = document.getElementById("tdTematicoProducao");
-                  if(document.getElementById('tdTematicoProducao').childNodes.length > 1){
-                    $(table).find('tbody').remove();
-                    $(table).append("<tbody id='tdTematicoProducao'></tbody>");
-                  }
-                };
+                let dynatable = $("#tableTematicoProducao").dynatable({ 
+                  dataset: { 
+                    records: data.log.updateResults
+                    } 
+                  }, 
+                  { features: {
+                      pushState: false 
+                    }
+                  }).data("dynatable");
+                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
+                        dynatable.process();
 
-                for (let i = 0; i < data.log.updateResults.length; i++) {
-                    $(table).find('tbody').append(
-                      "<tr><td><div>" + data.log.updateResults[i].objectId
-                      + "</div></td><td><div '>" + 'Update'
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].success +"'>" + data.log.updateResults[i].success
-                      + "</div></td><td><div title='"+ data.log.updateResults[i].uniqueId +"'>" + data.log.updateResults[i].uniqueId
-                      + "</div></td></tr>");
-                  }
-
-                  $('#tableTematicoProducao').dynatable();
                   document.getElementById('resultTematicoProducao').style.display = 'block';
                  }, 1500);
            }
@@ -628,24 +604,18 @@ function deletarGeralTeste () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              for (var i = document.getElementById('tdGeralTesteDeletar').childNodes.length - 1; i >= 0; i--) {
-                var node = document.getElementById("tdGeralTesteDeletar");
-                if(document.getElementById('tdGeralTesteDeletar').childNodes.length > 1){
-                  $(table).find('tbody').remove();
-                  $(table).append("<tbody id='tdGeralTesteDeletar'></tbody>");
-                }
-              };
+              let dynatable = $("#tableTGeralTesteDeletar").dynatable({ 
+                dataset: { 
+                  records: data.log.deleteResults
+                  } 
+                }, 
+                { features: {
+                    pushState: false 
+                  }
+                }).data("dynatable");
+                      dynatable.settings.dataset.originalRecords = data.log.deleteResults;
+                      dynatable.process();
 
-              for (let i = 0; i < data.log.deleteResults.length; i++) {
-                $(table).find('tbody').append(
-                  "<tr><td><div>" + data.log.deleteResults[i].objectId
-                  + "</div></td><td><div '>" + 'Delete'
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
-                  + "</div></td></tr>");
-              }
-
-              $('#tableTGeralTesteDeletar').dynatable();
               document.getElementById('resultGeralTesteDeletar').style.display = 'block';
               }, 1500);
          }
@@ -720,33 +690,18 @@ function atualizarGeralTeste () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              for (var i = document.getElementById('tdGeralTeste').childNodes.length - 1; i >= 0; i--) {
-                var node = document.getElementById("tdGeralTeste");
-                if(document.getElementById('tdGeralTeste').childNodes.length > 1){
-                  $(table).find('tbody').remove();
-                  $(table).append("<tbody id='tdGeralTeste'></tbody>");
-                }
-              };
+              let dynatable = $("#tableTGeralTeste").dynatable({ 
+                dataset: { 
+                  records: data.log.addResults
+                  } 
+                }, 
+                { features: {
+                    pushState: false 
+                  }
+                }).data("dynatable");
+                      dynatable.settings.dataset.originalRecords = data.log.addResults;
+                      dynatable.process();
 
-              for (let i = 0; i < data.log.deleteResults.length; i++) {
-                $(table).find('tbody').append(
-                  "<tr><td><div>" + data.log.deleteResults[i].objectId
-                  + "</div></td><td><div '>" + 'Delete'
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
-                  + "</div></td></tr>");
-              }
-
-              for (let i = 0; i < data.log.addResults.length; i++) {
-                  $(table).find('tbody').append(
-                    "<tr><td><div>" + data.log.addResults[i].objectId
-                    + "</div></td><td><div '>" + 'Add'
-                    + "</div></td><td><div title='" + data.log.addResults[i].success + "'>" + data.log.addResults[i].success
-                    + "</div></td><td><div title='" + data.log.addResults[i].uniqueId + "'>" + data.log.addResults[i].uniqueId
-                    + "</div></td></tr>");
-                }
-
-                $('#tableTGeralTeste').dynatable();
                 document.getElementById('resultGeralTeste').style.display = 'block';
                }, 1500);
          }
@@ -821,24 +776,18 @@ function deletarGeralProd () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              for (var i = document.getElementById('tableTGeralProdDeletar').childNodes.length - 1; i >= 0; i--) {
-                var node = document.getElementById("tableTGeralProdDeletar");
-                if(document.getElementById('tableTGeralProdDeletar').childNodes.length > 1){
-                  $(table).find('tbody').remove();
-                  $(table).append("<tbody id='tableTGeralProdDeletar'></tbody>");
-                }
-              };
+              let dynatable = $("#tableTGeralProdDeletar").dynatable({ 
+                dataset: { 
+                  records: data.log.deleteResults
+                  } 
+                }, 
+                { features: {
+                    pushState: false 
+                  }
+                }).data("dynatable");
+                      dynatable.settings.dataset.originalRecords = data.log.deleteResults;
+                      dynatable.process();
 
-              for (let i = 0; i < data.log.deleteResults.length; i++) {
-                $(table).find('tbody').append(
-                  "<tr><td><div>" + data.log.deleteResults[i].objectId
-                  + "</div></td><td><div '>" + 'Delete'
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
-                  + "</div></td></tr>");
-              }
-
-              $('#tableTGeralProdDeletar').dynatable();
               document.getElementById('resultGeralProdDeletar').style.display = 'block';
               }, 1500);
          }
@@ -913,33 +862,19 @@ function atualizarGeralProducao () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              for (var i = document.getElementById('tdGeralProducao').childNodes.length - 1; i >= 0; i--) {
-                var node = document.getElementById("tdGeralProducao");
-                if(document.getElementById('tdGeralProducao').childNodes.length > 1){
-                  $(table).find('tbody').remove();
-                  $(table).append("<tbody id='tdGeralProducao'></tbody>");
-                }
-              };
+             
+              let dynatable = $("#tableTGeralProducao").dynatable({ 
+                dataset: { 
+                  records: data.log.addResults
+                  } 
+                }, 
+                { features: {
+                    pushState: false 
+                  }
+                }).data("dynatable");
+                      dynatable.settings.dataset.originalRecords = data.log.addResults;
+                      dynatable.process();
 
-              for (let i = 0; i < data.log.deleteResults.length; i++) {
-                $(table).find('tbody').append(
-                  "<tr><td><div>" + data.log.deleteResults[i].objectId
-                  + "</div></td><td><div '>" + 'Delete'
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].success + "'>" + data.log.deleteResults[i].success
-                  + "</div></td><td><div title='" + data.log.deleteResults[i].uniqueId + "'>" + data.log.deleteResults[i].uniqueId
-                  + "</div></td></tr>");
-              }
-
-              for (let i = 0; i < data.log.addResults.length; i++) {
-                  $(table).find('tbody').append(
-                    "<tr><td><div>" + data.log.addResults[i].objectId
-                    + "</div></td><td><div '>" + 'Add'
-                    + "</div></td><td><div title='"+ data.log.addResults[i].success +"'>" + data.log.addResults[i].success
-                    + "</div></td><td><div title='"+ data.log.addResults[i].uniqueId +"'>" + data.log.addResults[i].uniqueId
-                    + "</div></td></tr>");
-                }
-
-                $('#tableTGeralProducao').dynatable();
                 document.getElementById('resultGeralProducao').style.display = 'block';
                }, 1500);
          }
