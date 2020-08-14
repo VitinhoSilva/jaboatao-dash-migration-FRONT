@@ -266,17 +266,17 @@ function atualizarBairroTeste () {
                 document.getElementById('sucessoB').style.display = 'none';
                 document.getElementById('erroB').style.display = 'none';
 
-                let dynatable = $("#tableBairroTeste").dynatable({ 
-                  dataset: { 
-                    records: data.log.updateResults
-                    } 
-                  }, 
-                  { features: {
-                      pushState: false 
-                    }
-                  }).data("dynatable");
-                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
-                        dynatable.process();
+                $(document).ready(function() {
+                  $('#tableBairroTeste').dataTable( {
+                      data: data.log.updateResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
 
                   document.getElementById('resultBairroTeste').style.display = 'block';
                  }, 1500);
@@ -350,17 +350,17 @@ function atualizarBairroProucao () {
                 document.getElementById('sucessoB').style.display = 'none';
                 document.getElementById('erroB').style.display = 'none';
 
-                let dynatable = $("#tableBairroProducao").dynatable({ 
-                  dataset: { 
-                    records: data.log.updateResults
-                    } 
-                  }, 
-                  { features: {
-                      pushState: false 
-                    }
-                  }).data("dynatable");
-                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
-                        dynatable.process();
+                $(document).ready(function() {
+                  $('#tableBairroProducao').dataTable( {
+                      data: data.log.updateResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
 
                   document.getElementById('resultBairroProducao').style.display = 'block';
                  }, 1500);
@@ -434,17 +434,17 @@ function atualizarTematicoTeste () {
                 document.getElementById('sucessoT').style.display = 'none';
                 document.getElementById('erroT').style.display = 'none';
 
-                let dynatable = $("#tableTematicoTeste").dynatable({ 
-                  dataset: { 
-                    records: data.log.updateResults
-                    } 
-                  }, 
-                  { features: {
-                      pushState: false 
-                    }
-                  }).data("dynatable");
-                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
-                        dynatable.process();
+                $(document).ready(function() {
+                  $('#tableTematicoTeste').dataTable( {
+                      data: data.log.updateResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
                 
                   document.getElementById('resultTematicoTeste').style.display = 'block';
                  }, 1500);
@@ -518,17 +518,18 @@ function atualizarTematicoProducao () {
                 document.getElementById('sucessoT').style.display = 'none';
                 document.getElementById('erroT').style.display = 'none';
 
-                let dynatable = $("#tableTematicoProducao").dynatable({ 
-                  dataset: { 
-                    records: data.log.updateResults
-                    } 
-                  }, 
-                  { features: {
-                      pushState: false 
-                    }
-                  }).data("dynatable");
-                        dynatable.settings.dataset.originalRecords = data.log.updateResults;
-                        dynatable.process();
+                  $(document).ready(function() {
+                  $('#tableTematicoProducao').dataTable( {
+                      data: data.log.updateResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
+
 
                   document.getElementById('resultTematicoProducao').style.display = 'block';
                  }, 1500);
@@ -604,17 +605,18 @@ function deletarGeralTeste () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              let dynatable = $("#tableTGeralTesteDeletar").dynatable({ 
-                dataset: { 
-                  records: data.log.deleteResults
-                  } 
-                }, 
-                { features: {
-                    pushState: false 
-                  }
-                }).data("dynatable");
-                      dynatable.settings.dataset.originalRecords = data.log.deleteResults;
-                      dynatable.process();
+              
+                $(document).ready(function() {
+                  $('#tableTGeralTesteDeletar').dataTable( {
+                      data: data.log.deleteResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
 
               document.getElementById('resultGeralTesteDeletar').style.display = 'block';
               }, 1500);
@@ -690,17 +692,17 @@ function atualizarGeralTeste () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              let dynatable = $("#tableTGeralTeste").dynatable({ 
-                dataset: { 
-                  records: data.log.addResults
-                  } 
-                }, 
-                { features: {
-                    pushState: false 
-                  }
-                }).data("dynatable");
-                      dynatable.settings.dataset.originalRecords = data.log.addResults;
-                      dynatable.process();
+                $(document).ready(function() {
+                  $('#tableTGeralTeste').dataTable( {
+                      data: data.log.addResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
 
                 document.getElementById('resultGeralTeste').style.display = 'block';
                }, 1500);
@@ -776,17 +778,17 @@ function deletarGeralProd () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              let dynatable = $("#tableTGeralProdDeletar").dynatable({ 
-                dataset: { 
-                  records: data.log.deleteResults
-                  } 
-                }, 
-                { features: {
-                    pushState: false 
-                  }
-                }).data("dynatable");
-                      dynatable.settings.dataset.originalRecords = data.log.deleteResults;
-                      dynatable.process();
+                $(document).ready(function() {
+                  $('#tableTGeralProdDeletar').dataTable( {
+                      data: data.log.deleteResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
 
               document.getElementById('resultGeralProdDeletar').style.display = 'block';
               }, 1500);
@@ -862,18 +864,18 @@ function atualizarGeralProducao () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-             
-              let dynatable = $("#tableTGeralProducao").dynatable({ 
-                dataset: { 
-                  records: data.log.addResults
-                  } 
-                }, 
-                { features: {
-                    pushState: false 
-                  }
-                }).data("dynatable");
-                      dynatable.settings.dataset.originalRecords = data.log.addResults;
-                      dynatable.process();
+
+                $(document).ready(function() {
+                  $('#tableTGeralProducao').dataTable( {
+                      data: data.log.addResults,
+                      destroy: true,
+                      columns: [
+                          { data: "objectId" },
+                          { data: "success" },
+                          { data: "uniqueId" }
+                      ]
+                  });
+                });
 
                 document.getElementById('resultGeralProducao').style.display = 'block';
                }, 1500);
