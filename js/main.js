@@ -267,9 +267,33 @@ function atualizarBairroTeste () {
                 document.getElementById('erroB').style.display = 'none';
 
                 $(document).ready(function() {
-                  $('#tableBairroTeste').dataTable( {
+                  $('#tableBairroTeste').DataTable( {
                       data: data.log.updateResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -351,9 +375,33 @@ function atualizarBairroProucao () {
                 document.getElementById('erroB').style.display = 'none';
 
                 $(document).ready(function() {
-                  $('#tableBairroProducao').dataTable( {
+                  $('#tableBairroProducao').DataTable( {
                       data: data.log.updateResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -435,9 +483,33 @@ function atualizarTematicoTeste () {
                 document.getElementById('erroT').style.display = 'none';
 
                 $(document).ready(function() {
-                  $('#tableTematicoTeste').dataTable( {
+                  $('#tableTematicoTeste').DataTable( {
                       data: data.log.updateResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -518,10 +590,34 @@ function atualizarTematicoProducao () {
                 document.getElementById('sucessoT').style.display = 'none';
                 document.getElementById('erroT').style.display = 'none';
 
-                  $(document).ready(function() {
-                  $('#tableTematicoProducao').dataTable( {
+                $(document).ready(function() {
+                  $('#tableTematicoProducao').DataTable( {
                       data: data.log.updateResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -605,11 +701,34 @@ function deletarGeralTeste () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-              
                 $(document).ready(function() {
-                  $('#tableTGeralTesteDeletar').dataTable( {
+                  $('#tableTGeralTesteDeletar').DataTable( {
                       data: data.log.deleteResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -693,9 +812,33 @@ function atualizarGeralTeste () {
               document.getElementById('erroG').style.display = 'none';
 
                 $(document).ready(function() {
-                  $('#tableTGeralTeste').dataTable( {
+                  $('#tableTGeralTeste').DataTable( {
                       data: data.log.addResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -779,9 +922,33 @@ function deletarGeralProd () {
               document.getElementById('erroG').style.display = 'none';
 
                 $(document).ready(function() {
-                  $('#tableTGeralProdDeletar').dataTable( {
+                  $('#tableTGeralProdDeletar').DataTable( {
                       data: data.log.deleteResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
@@ -864,11 +1031,34 @@ function atualizarGeralProducao () {
               document.getElementById('sucessoG').style.display = 'none';
               document.getElementById('erroG').style.display = 'none';
 
-
                 $(document).ready(function() {
-                  $('#tableTGeralProducao').dataTable( {
+                  $('#tableTGeralProducao').DataTable( {
                       data: data.log.addResults,
+                      resposive: true,
                       destroy: true,
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                          extend:    'copyHtml5',
+                          text:      '<i class="fa fa-files-o"></i>',
+                          titleAttr: 'Copy'
+                      },
+                      {
+                          extend:    'excelHtml5',
+                          text:      '<i class="fa fa-file-excel-o"></i>',
+                          titleAttr: 'Excel'
+                      },
+                      {
+                          extend:    'csvHtml5',
+                          text:      '<i class="fa fa-file-text-o"></i>',
+                          titleAttr: 'CSV'
+                      },
+                      {
+                          extend:    'pdfHtml5',
+                          text:      '<i class="fa fa-file-pdf-o"></i>',
+                          titleAttr: 'PDF'
+                      }
+                      ],
                       columns: [
                           { data: "objectId" },
                           { data: "success" },
